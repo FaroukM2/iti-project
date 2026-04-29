@@ -4,6 +4,8 @@ A modern, responsive e-commerce web application built with **Vue 3**, **Vite**, 
 
 ## 🌟 Features
 
+![GreenMart Screenshot](public/images/screenshot.png)
+
 - **Modern UI/UX**: Designed with a premium look, vibrant colors, and smooth micro-animations.
 - **Dynamic Routing**: Vue Router for seamless navigation between Home, Products, Contact, and Cart.
 - **Global State Management**: Powered by Pinia to ensure real-time cart updates (quantities, total price, dynamic cart badge).
