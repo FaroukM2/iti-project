@@ -4,12 +4,17 @@ import Product from '../components/maincomponent/product.vue'
 import Contact from '@/components/maincomponent/contact.vue'
 import Productdetails from '@/components/maincomponent/productdetails.vue'
 import Cart from '@/components/maincomponent/cart.vue'
+import Login from '@/components/maincomponent/login.vue'
 
 const routes =[
     
         { 
             path: '/',
             component: Home
+        },
+        {
+            path: '/login',
+            component: Login
         },
         {
             path: '/products',

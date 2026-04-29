@@ -26,6 +26,7 @@
           <router-link class="btn-login" to="/login">Sign In</router-link>
           <router-link class="btn-cart hover-effect" to="/cart">
             <i class="fas fa-shopping-cart"></i>
+            <span v-if="cartCount > 0" class="cart-badge">{{ cartCount }}</span>
           </router-link>
         </div>
       </div>
@@ -97,18 +98,56 @@
   width: 100%;
 }
 
+.router-link-active.nav-link {
+  color: #388e3c;
+  font-weight: 600;
+}
+
+.router-link-active.nav-link::after {
+  width: 100%;
+}
+
 .btn-cart {
+  position: relative;
   background-color: #388e3c;
   color: #fff;
   padding: 0.6rem 0.8rem;
   border-radius: 50%;
   font-size: 1.3rem;
   transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .btn-cart:hover {
   background-color: #2e7d32;
   transform: scale(1.1);
+  color: #fff;
+}
+
+.cart-badge {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  background: #e53935;
+  color: #fff;
+  font-size: 0.65rem;
+  font-weight: 700;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #fff;
+  animation: pop 0.3s ease;
+}
+
+@keyframes pop {
+  0% { transform: scale(0); }
+  70% { transform: scale(1.2); }
+  100% { transform: scale(1); }
 }
 
 .btn-login {
@@ -120,6 +159,7 @@
   font-weight: 600;
   font-size: 0.9rem;
   transition: all 0.3s;
+  text-decoration: none;
 }
 
 .btn-login:hover {
@@ -130,8 +170,17 @@
 </style>
 
 <script>
+import { computed } from 'vue';
+import { useCartStore } from '@/piniastore/cartstore';
+
 export default {
   name: "Header",
+  setup() {
+    const cartStore = useCartStore();
+    return {
+      cartCount: computed(() => cartStore.totalItems)
+    };
+  },
   mounted() {
     window.addEventListener("scroll", this.handleScroll);
   },
